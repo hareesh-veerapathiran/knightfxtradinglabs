@@ -1,0 +1,63 @@
+.mentorship-hero-actions { display:flex; align-items:center; gap:28px; margin-top:32px; }
+.mentorship-explore-link { display:inline-flex; align-items:center; gap:9px; padding:0 0 8px; border-bottom:1px solid rgba(211,212,207,.38); color:#d4d5d0; font:8px var(--mono); letter-spacing:.13em; transition:color .18s ease,border-color .18s ease; }
+.mentorship-explore-link svg { transition:transform .22s ease; }
+.mentorship-explore-link:hover { color:#fff; border-color:#fff; }
+.mentorship-explore-link:hover svg { transform:translateY(3px); }
+.mentorship-intro { padding-bottom:64px; }
+.mentorship-pricing { padding-top:64px; padding-bottom:120px; background:#101112; }
+.mentorship-offer-card {
+  --mentorship-accent: #a5222e;
+  position:relative;
+  width:min(100%,490px);
+  margin:18px auto 0;
+  padding:43px 40px 38px;
+  border:1px solid rgba(165,34,46,.52);
+  border-radius:19px;
+  background:#0b0c0c;
+  box-shadow:0 18px 48px rgba(0,0,0,.19);
+}
+.mentorship-popular-badge { position:absolute; top:-13px; left:26px; padding:7px 11px; border-radius:4px; background:var(--mentorship-accent); color:#fff; font:700 8px/1 var(--body); letter-spacing:.09em; }
+.mentorship-offer-header h2 { margin:0; color:#f0f0ec; font:650 clamp(20px,2.2vw,24px)/1.2 var(--display); letter-spacing:-.045em; }
+.mentorship-offer-header p { max-width:390px; margin:11px 0 26px; color:#a0a19d; font-size:11px; line-height:1.8; }
+.mentorship-offer-pricing { display:flex; flex-wrap:wrap; align-items:baseline; column-gap:13px; row-gap:2px; }
+.mentorship-offer-pricing del { color:#81827e; font:400 18px var(--display); text-decoration-thickness:1px; }
+.mentorship-limited-offer { margin-left:auto; color:#d77980; font:700 8px var(--mono); letter-spacing:.13em; }
+.mentorship-offer-pricing strong { flex-basis:100%; color:#f0f0ec; font:650 clamp(82px,11vw,104px)/.91 var(--display); letter-spacing:-.09em; }
+.mentorship-fee-label { margin-top:10px; color:#a2a49e; font:8px var(--mono); letter-spacing:.16em; }
+.mentorship-offer-divider { height:1px; margin:24px 0 22px; background:rgba(229,231,226,.15); }
+.mentorship-offer-features { display:grid; gap:15px; margin:0; padding:0; list-style:none; }
+.mentorship-offer-features li { display:grid; grid-template-columns:16px 1fr; align-items:start; gap:11px; color:#dedfda; font-size:11px; line-height:1.6; }
+.mentorship-offer-features li>span { color:var(--mentorship-accent); font:700 16px/1.2 var(--body); }
+.mentorship-offer-cta { display:flex; align-items:center; justify-content:space-between; width:100%; margin-top:29px; padding:17px 19px; border:1px solid var(--mentorship-accent); border-radius:8px; background:var(--mentorship-accent); color:#fff; font:700 14px/1.1 var(--body); letter-spacing:.015em; transition:filter .2s ease,transform .2s ease,box-shadow .2s ease; }
+.mentorship-offer-cta:hover { filter:brightness(1.12); transform:translateY(-1px); box-shadow:0 5px 15px rgba(165,34,46,.16); }
+.mentorship-offer-cta:focus-visible { outline:2px solid #f1b4b8; outline-offset:4px; }
+.mentorship-text-join { display:flex; flex-direction:column; align-items:flex-start; gap:8px; width:max-content; max-width:100%; margin-top:21px; padding-bottom:9px; border-bottom:1px solid rgba(211,212,207,.34); color:#bfc1bb; transition:color .15s ease,border-color .15s ease; }
+.mentorship-text-join>span { font-size:10px; line-height:1.5; }
+.mentorship-text-join>strong { display:inline-flex; align-items:center; gap:8px; color:#e4e5df; font:8px var(--mono); letter-spacing:.12em; }
+.mentorship-text-join svg { transition:transform .18s ease; }
+.mentorship-text-join:hover { color:#fff; border-color:#fff; }
+.mentorship-text-join:hover svg { transform:translate(2px,-2px); }
+.mentorship-price-panel>small { display:block; margin-top:23px; color:#7f817b; font-size:9px; }
+.mentorship-closing>p { max-width:500px; }
+.mentorship-closing-actions { display:flex; align-items:center; gap:32px; margin-top:30px; }
+.mentorship-closing-actions .mentorship-text-join { margin-top:0; }
+@media (max-width:760px) {
+  .mentorship-hero-actions { align-items:flex-start; flex-direction:column; gap:22px; margin-top:26px; }
+  .mentorship-intro { padding-bottom:48px; }
+  .mentorship-pricing { padding-top:52px; padding-bottom:82px; }
+  .mentorship-offer-card { margin-top:16px; padding:39px 25px 26px; border-radius:18px; }
+  .mentorship-popular-badge { left:20px; }
+  .mentorship-offer-header h2 { font-size:clamp(18px,5vw,22px); }
+  .mentorship-offer-header p { margin-bottom:23px; font-size:10px; }
+  .mentorship-offer-pricing strong { font-size:clamp(82px,22vw,92px); }
+  .mentorship-offer-features { gap:14px; }
+  .mentorship-offer-features li { font-size:10px; }
+  .mentorship-offer-cta { margin-top:25px; font-size:13px; }
+  .mentorship-closing-actions { align-items:flex-start; flex-direction:column; gap:18px; }
+}
+
+@media (max-width:390px) {
+  .mentorship-offer-card { padding-right:21px; padding-left:21px; }
+  .mentorship-limited-offer { font-size:7px; }
+  .mentorship-offer-features li { grid-template-columns:14px 1fr; gap:9px; font-size:9px; }
+}
