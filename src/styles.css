@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Sora', sans-serif;
   color: #e8e9e4;
   background: #080909;
   font-synthesis: none;
@@ -12,7 +12,7 @@
   --muted: #92948f;
   --line: rgba(223, 225, 220, .15);
   --display: 'Sora', sans-serif;
-  --body: 'Inter', sans-serif;
+  --body: 'Sora', sans-serif;
   --mono: 'DM Mono', monospace;
   --navbar-height: 78px;
   scroll-behavior: smooth;
@@ -21,7 +21,7 @@
   background-color: var(--black);
 }
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; background: var(--black); font-family: var(--body); }
+body { margin: 0; min-width: 320px; background: var(--black); font-family: var(--body); font-size: 15px; line-height: 1.7; }
 body, button, a { -webkit-tap-highlight-color: transparent; }
 ::selection { color: #080909; background: #c8c9c4; }
 a { color: inherit; text-decoration: none; }
@@ -78,14 +78,11 @@ h1, h2, h3, p { margin-top: 0; }
 /* Home hero */
 .hero { position: relative; isolation: isolate; min-height: min(960px, 100svh); height: max(760px, 100svh); display: grid; place-items: center; overflow: hidden; background: #090a0a; }
 .hero-image { position: absolute; z-index: -5; inset: -4%; background: url('/images/dubai-night-architecture.png') center 50% / cover no-repeat; transform: scale(1.035); }
-.certificate-wall { position: absolute; z-index: -4; inset: 0; overflow: hidden; pointer-events: none; perspective: 1400px; }
-.certificate-frame { position: absolute; left: 50%; top: 50%; width: clamp(245px, 27vw, 405px); height: clamp(172px, 21vw, 286px); display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0; padding: 13px; border: 1px solid rgba(230,232,226,.21); background: rgba(10,10,10,.45); backdrop-filter: blur(6px); box-shadow: 0 25px 70px rgba(0,0,0,.35); transform-origin: center; will-change: transform, opacity; }
-.certificate-image { display: block; width: 100%; height: 100%; object-fit: contain; }
 .hero-shade { position: absolute; z-index: -3; inset: 0; background: linear-gradient(90deg,rgba(2,3,3,.55),rgba(2,3,3,.42) 50%,rgba(2,3,3,.6)),linear-gradient(0deg,rgba(2,3,3,.8),transparent 35%,rgba(2,3,3,.32)); }
 .hero-vignette { position: absolute; z-index: -2; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 44%,rgba(4,5,5,.08) 0%,rgba(4,5,5,.3) 47%,rgba(4,5,5,.65) 100%); }
 .hero-content { position: relative; z-index: 3; width: min(92vw, 1500px); margin-top: -12px; text-align: center; text-shadow: 0 2px 28px rgba(0,0,0,.65); }
 .hero-content .eyebrow { justify-content: center; margin-bottom: 24px; }
-.hero-title { display: flex; flex-direction: column; align-items: center; margin: 0 auto 34px; color: #e6e7e2; font: 700 clamp(48px, 7.4vw, 128px)/.98 var(--display); letter-spacing: -.085em; }
+.hero-title { display: flex; flex-direction: column; align-items: center; margin: 0 auto 34px; color: #e6e7e2; font: 700 clamp(48px, 8vw, 150px)/.96 var(--display); letter-spacing: -.085em; }
 .hero-title span { display: block; }
 .hero-title span+span { color: #b7b9b4; }
 .hero-cta { justify-content: center; }
@@ -150,9 +147,8 @@ h1, h2, h3, p { margin-top: 0; }
 /* Interior page heroes */
 .page-hero { position: relative; isolation: isolate; min-height: 720px; height: min(92svh,940px); display: flex; align-items: center; overflow: hidden; padding: 120px 9vw 80px; background: #101112; }
 .page-hero-image { position: absolute; z-index: -3; inset: 0; background-position: center; background-size: cover; filter: grayscale(.8); }
-.about-image, .mentorship-image, .partnerships-image, .community-image { background-image: url('/images/dubai-night-architecture.png'); }
+.about-image, .partnerships-image, .community-image { background-image: url('/images/dubai-night-architecture.png'); }
 .about-image { background-position: 66% 48%; }
-.mentorship-image { background-position: 36% 52%; }
 .partnerships-image { background-position: 76% 56%; }
 .community-image { background-position: 58% 60%; }
 .page-hero-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg,rgba(4,5,5,.86),rgba(4,5,5,.55) 60%,rgba(4,5,5,.3)),linear-gradient(0deg,rgba(4,5,5,.6),transparent 45%); }
@@ -162,9 +158,9 @@ h1, h2, h3, p { margin-top: 0; }
 .page-hero-index { position: absolute; right: 5vw; bottom: 34px; }
 
 /* About */
-.about-statement, .mentorship-intro { padding-top: 120px; padding-bottom: 145px; }
-.about-statement-grid, .mentorship-intro-grid { display: grid; grid-template-columns: 1.2fr .6fr; gap: 8vw; align-items: end; padding-top: 80px; }
-.about-statement-grid>p, .mentorship-intro-grid>p { margin: 0 0 9px; color: #a5a7a1; font-size: 12px; line-height: 1.9; }
+.about-statement { padding-top: 120px; padding-bottom: 145px; }
+.about-statement-grid { display: grid; grid-template-columns: 1.2fr .6fr; gap: 8vw; align-items: end; padding-top: 80px; }
+.about-statement-grid>p { margin: 0 0 9px; color: #a5a7a1; font-size: 12px; line-height: 1.9; }
 .about-principles { padding-top: 85px; padding-bottom: 130px; background: #101112; }
 .about-principle-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 5vw; padding-top: 72px; }
 .about-principle { border-top: 1px solid var(--line); padding-top: 17px; }
@@ -178,12 +174,6 @@ h1, h2, h3, p { margin-top: 0; }
 .about-mentor-copy>p { max-width: 455px; margin: 0 0 30px; color: #a4a6a0; font-size: 12px; line-height: 1.85; }
 .risk-statement { display: flex; justify-content: space-between; gap: 50px; padding-top: 30px; padding-bottom: 34px; border-top: 1px solid var(--line); background: #101112; }
 .risk-statement p { max-width: 560px; margin: 0; color: #a2a49e; font-size: 11px; line-height: 1.8; }
-
-/* Mentorship */
-.mentorship-intro-grid { grid-template-columns: 1.15fr .7fr; }
-.mentorship-closing { padding-top: 100px; padding-bottom: 115px; background: #101112; }
-.mentorship-closing>.display-lines { margin: 45px 0 21px; }
-.mentorship-closing>p { margin-bottom: 26px; color: #a7a9a3; font-size: 12px; }
 
 /* Partnerships */
 .partnership-principles { padding-top: 125px; padding-bottom: 140px; }
@@ -217,7 +207,6 @@ h1, h2, h3, p { margin-top: 0; }
   .knight-path { grid-template-columns: 1fr; gap: 30px; }
   .path-heading .section-label { margin-bottom: 55px; }
   .path-steps { padding-top: 10px; }
-  .certificate-frame { width: clamp(230px,31vw,350px); height: clamp(160px,23vw,250px); }
 }
 @media (max-width: 900px) {
   :root { --navbar-height: 68px; }
@@ -245,11 +234,10 @@ h1, h2, h3, p { margin-top: 0; }
   .hero-content .eyebrow { margin-bottom: 18px; font-size: 8px; }
   .hero-title { font-size: clamp(40px, 10.2vw, 70px); letter-spacing: -.08em; line-height: 1.01; margin-bottom: 26px; }
   .hero-meta { left: 7vw; right: 7vw; bottom: 22px; flex-direction: column; gap: 8px; font-size: 7px; }
-  .certificate-frame { width: 240px; height: 168px; padding: 8px; }
-  .brand-statement, .about-statement, .mentorship-intro { padding-top: 82px; padding-bottom: 92px; }
+  .brand-statement, .about-statement { padding-top: 82px; padding-bottom: 92px; }
   .section-label { font-size: 7px; letter-spacing: .12em; gap: 10px; }
   .section-label span:last-child { max-width: 47%; }
-  .statement-grid, .about-statement-grid, .mentorship-intro-grid, .partnership-copy-grid { grid-template-columns: 1fr; gap: 30px; padding-top: 55px; }
+  .statement-grid, .about-statement-grid, .partnership-copy-grid { grid-template-columns: 1fr; gap: 30px; padding-top: 55px; }
   .display-lines { font-size: clamp(38px,10vw,63px); }
   .statement-title { font-size: clamp(38px,9.7vw,62px); }
   .statement-aside { margin-left: 22%; }
@@ -297,7 +285,6 @@ h1, h2, h3, p { margin-top: 0; }
   .about-mentor-copy .section-label { margin-bottom: 45px; }
   .risk-statement { display: block; padding-top: 24px; padding-bottom: 26px; }
   .risk-statement p { margin-top: 12px; font-size: 10px; }
-  .mentorship-closing { padding-top: 72px; padding-bottom: 80px; }
   .partnership-principles { padding-top: 82px; padding-bottom: 92px; }
   .partnership-copy-grid { padding-top: 55px; }
   .partnership-copy-grid>div p { font-size: 11px; }
@@ -324,6 +311,86 @@ h1, h2, h3, p { margin-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto; scroll-snap-type: none; }
 }
+
+/* Editorial system refinement: two type families, clearer reading scale, softer surfaces. */
+:root {
+  --line: rgba(223, 225, 220, .17);
+  text-rendering: optimizeLegibility;
+}
+.page-content p:not(.eyebrow):not(.about-founder-role):not(.about-founder-alias):not(.about-performance-note):not(.community-journal-disclaimer):not(.education-partner-caption p) {
+  font-size: clamp(13px, .95vw, 15px);
+  line-height: 1.82;
+}
+.about-company-detail,
+.about-founder-bio p,
+.mentorship-intro-copy > p,
+.mentorship-offer-header > p,
+.partnerships-opening-copy > p,
+.partner-network-intro > p,
+.partner-category-description,
+.partner-code-note p,
+.partnership-code-description,
+.partnerships-statement > p,
+.partnerships-final-content > p,
+.community-opening-copy > p,
+.community-platforms-intro > p,
+.community-platform-copy > span,
+.community-journal-heading > p,
+.community-journal-empty,
+.community-journal-caption > p,
+.community-inner-copy > p,
+.community-final > p {
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+.community-platform-row,
+.partner-card,
+.mentorship-offer-card,
+.about-founder-photo-wrap {
+  border-color: rgba(223,225,220,.18);
+}
+.partner-card { padding: clamp(20px,2vw,28px); }
+.partner-card-art { aspect-ratio: 1.12 / 1; border-radius: 4px; }
+.partner-card-offer { font-size: 10px; }
+.partner-card-action { font-size: 9px; }
+.mentorship-offer-header > p,
+.mentorship-offer-features li { font-size: 13px; }
+.mentorship-offer-features li { min-height: 56px; }
+.community-platform-copy > span,
+.about-founder-bio p,
+.about-company-detail,
+.partner-category-description,
+.partner-network-intro > p,
+.partnerships-opening-copy > p,
+.partnerships-final-content > p,
+.community-opening-copy > p,
+.community-platforms-intro > p,
+.community-journal-heading > p,
+.community-inner-copy > p,
+.community-final > p { font-size: 14px; }
+.partnerships-opening-copy > p { max-width: 50ch; }
+.community-journal-image-link img { object-fit: contain; }
+.display-lines em { color: #a2a49f; }
+
+@media (max-width: 760px) {
+  .page-content p:not(.eyebrow):not(.about-founder-role):not(.about-founder-alias):not(.about-performance-note):not(.community-journal-disclaimer):not(.education-partner-caption p) { font-size: 13px; }
+  .community-platform-copy > span,
+  .about-founder-bio p,
+  .about-company-detail,
+  .partner-category-description,
+  .partner-network-intro > p,
+  .partnerships-opening-copy > p,
+  .partnerships-final-content > p,
+  .community-opening-copy > p,
+  .community-platforms-intro > p,
+  .community-journal-heading > p,
+  .community-inner-copy > p,
+  .community-final > p { font-size: 13px; }
+  .partner-card { padding: 19px; }
+  .partner-card-art { aspect-ratio: 1.2 / 1; }
+  .mentorship-offer-features li { min-height: 52px; font-size: 12px; }
+  .section-label { font-size: 8px; }
+}
 @media (max-width: 390px) {
   .brand-mark { width: 29px; height: 33px; }
   .wordmark-copy strong { font-size: 10px; }
@@ -336,5 +403,5 @@ h1, h2, h3, p { margin-top: 0; }
 }
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .hero-image,.page-hero-image,.certificate-frame,.preview-image { transform: none !important; }
+  .hero-image,.page-hero-image,.preview-image { transform: none !important; }
 }

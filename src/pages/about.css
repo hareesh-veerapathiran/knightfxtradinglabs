@@ -10,22 +10,32 @@
 .about-company-detail { max-width:570px; margin:0; color:#a5a7a1; font-size:12px; line-height:1.9; }
 .about-company-space { min-height:1px; }
 .about-profile-home { border-top:1px solid var(--line); }
-.about-founder-section { padding-top:75px; padding-bottom:clamp(95px,12vw,160px); background:#101112; }
-.about-founder-layout { display:grid; grid-template-columns:minmax(300px,.86fr) minmax(390px,1.14fr); gap:clamp(45px,8vw,120px); align-items:center; padding-top:65px; }
-.about-founder-photo-wrap { position:relative; width:100%; max-width:650px; overflow:hidden; border:1px solid rgba(231,233,228,.2); background:#17191a; }
-.about-founder-photo { display:block; width:100%; height:auto; aspect-ratio:1/1; object-fit:contain; }
+.about-founder-section { padding-top:clamp(78px,9vw,126px); padding-bottom:clamp(95px,12vw,160px); background:#101112; }
+.about-founder-heading { max-width:1500px; margin:0 auto; }
+.about-founder-heading > .eyebrow { margin:0 0 30px; }
+.about-founder-manifesto { display:grid; gap:5px; margin:0; font:650 clamp(34px,5.3vw,76px)/.98 var(--display); letter-spacing:-.07em; }
+.about-founder-manifesto span { display:block; }
+.about-founder-manifesto em { color:#9b9d97; font-style:normal; font-weight:450; }
+.about-founder-layout { display:grid; grid-template-columns:minmax(300px,.88fr) minmax(390px,1.12fr); gap:clamp(45px,7vw,105px); align-items:center; max-width:1500px; margin:0 auto; padding-top:clamp(55px,7vw,92px); }
+.about-founder-photo-wrap { position:relative; width:100%; aspect-ratio:1/1; max-width:650px; overflow:hidden; border:1px solid rgba(231,233,228,.2); border-radius:3px; background:#17191a; }
+.about-founder-photo { display:block; width:100%; height:100%; object-fit:contain; object-position:center; }
 .about-photo-caption { position:absolute; right:0; bottom:0; left:0; padding:17px 20px; color:#f0f0eb; background:linear-gradient(transparent,rgba(0,0,0,.82)); font:8px var(--mono); letter-spacing:.15em; }
 .about-photo-caption i { margin:0 6px; color:#a2a49e; font-style:normal; }
 .about-founder-details { min-width:0; }
-.about-founder-kicker { margin:0 0 28px; color:#d0d1cb; }
+.about-founder-kicker { margin:0 0 26px; color:#d0d1cb; }
 .about-founder-role,.about-founder-alias { color:#91938d; font:8px var(--mono); letter-spacing:.14em; }
-.about-founder-details h2 { margin:0 0 12px; font:600 clamp(48px,6vw,86px)/.96 var(--display); letter-spacing:-.075em; }
-.about-founder-role { margin:0 0 14px; color:#c2c4be; }
-.about-founder-alias { display:flex; align-items:center; gap:12px; margin:0; }
-.about-founder-alias strong { color:#d2d3ce; font-weight:500; }
-.about-founder-bio { max-width:610px; margin-top:37px; }
+.about-founder-details h2 { margin:0 0 7px; font:600 clamp(48px,5.8vw,82px)/.96 var(--display); letter-spacing:-.075em; }
+.about-founder-role { margin:16px 0 0; color:#c2c4be; }
+.about-founder-alias { margin:0; color:#d2d3ce; font:500 11px var(--mono); letter-spacing:.16em; }
+.about-founder-bio { max-width:660px; margin-top:32px; }
 .about-founder-bio p { margin:0 0 15px; color:#a9aba5; font-size:11px; line-height:1.95; }
 .about-founder-bio p:last-child { margin-bottom:0; }
+.about-founder-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:32px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.about-founder-stats > div { display:flex; min-height:91px; flex-direction:column; justify-content:center; gap:9px; padding:14px 13px; border-right:1px solid var(--line); }
+.about-founder-stats > div:first-child { padding-left:0; }
+.about-founder-stats > div:last-child { border-right:0; }
+.about-founder-stats strong { color:#e4e5df; font:500 clamp(15px,1.5vw,21px)/1 var(--display); letter-spacing:-.035em; }
+.about-founder-stats span { color:#8d8f89; font:7px/1.5 var(--mono); letter-spacing:.1em; }
 .about-performance-note { margin:18px 0 0; color:#777973; font-size:9px; line-height:1.7; }
 .about-social-links { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:25px; border-top:1px solid var(--line); }
 .about-social-links a { display:grid; grid-template-columns:1fr auto; gap:7px 12px; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); transition:color .14s ease; }
@@ -36,6 +46,10 @@
 .about-social-links a:hover svg { color:#fff; transform:translate(2px,-2px); }
 @media (max-width:980px) {
   .about-founder-layout { grid-template-columns:minmax(260px,.85fr) minmax(320px,1.15fr); gap:5vw; }
+  .about-founder-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .about-founder-stats > div:nth-child(2) { border-right:0; }
+  .about-founder-stats > div:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+  .about-founder-stats > div:nth-child(3) { padding-left:0; }
   .about-company-grid { grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); gap:5vw; }
 }
 @media (max-width:760px) {
@@ -47,11 +61,14 @@
   .about-company-detail { font-size:11px; }
   .about-company-space { display:none; }
   .about-founder-section { padding:64px 7vw 92px; }
-  .about-founder-layout { grid-template-columns:1fr; gap:36px; padding-top:45px; }
-  .about-founder-photo-wrap { max-width:560px; }
+  .about-founder-heading > .eyebrow { margin-bottom:24px; }
+  .about-founder-manifesto { font-size:clamp(32px,8.5vw,54px); line-height:1.02; }
+  .about-founder-layout { grid-template-columns:1fr; gap:32px; padding-top:42px; }
+  .about-founder-photo-wrap { width:100%; height:auto; aspect-ratio:1/1; max-width:560px; }
   .about-founder-details h2 { font-size:clamp(48px,12vw,72px); }
   .about-founder-bio { margin-top:28px; }
   .about-founder-bio p { font-size:11px; }
+  .about-founder-stats { margin-top:27px; }
 }
 @media (max-width:390px) {
   .about-company-section,.about-founder-section { padding-right:22px; padding-left:22px; }

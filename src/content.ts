@@ -8,13 +8,5 @@ export const pages: { id: SitePage; label: string; path: string; title: string; 
   { id: 'community', label: 'Community', path: '/community', title: 'Community | KNIGHTFX Trading Labs', description: 'A learning environment for market discussion, mentorship and thoughtful trading development.' },
 ];
 
-export const certificates = [
-  { id: '01', src: '/images/certificates/payout-01.png', alt: 'Payout certificate' },
-  { id: '02', src: '/images/certificates/payout-02.png', alt: 'Payout certificate' },
-  { id: '03', src: '/images/certificates/payout-03.png', alt: 'Payout certificate' },
-  { id: '04', src: '/images/certificates/payout-04.png', alt: 'Payout certificate' },
-  { id: '05', src: '/images/certificates/payout-05.png', alt: 'Payout certificate' },
-];
-
 export const navItems = pages;
 

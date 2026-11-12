@@ -135,18 +135,20 @@ export function App() {
       gsap.utils.toArray<HTMLElement>('.display-lines:not(.hero-title)').forEach((heading) => {
         const lines = heading.querySelectorAll<HTMLElement>('.display-line > span');
         if (!lines.length) return;
-        gsap.fromTo(lines, { yPercent: 104, opacity: 0 }, {
+        gsap.fromTo(lines, { yPercent: 104, opacity: 0, filter: 'blur(6px)' }, {
           yPercent: 0,
           opacity: 1,
-          duration: .78,
+          filter: 'blur(0px)',
+          duration: .86,
           stagger: .075,
           ease: 'power4.out',
+          clearProps: 'filter,transform,opacity',
           scrollTrigger: { trigger: heading, start: 'top 82%', once: true },
         });
       });
 
       gsap.utils.toArray<HTMLElement>('.site-section .page-hero').forEach((hero) => {
-        const revealTargets = hero.querySelectorAll<HTMLElement>('.page-hero-image, .page-title .display-line > span, .page-hero-copy > p, .mentorship-hero-actions');
+        const revealTargets = hero.querySelectorAll<HTMLElement>('.page-hero-image, .page-title .display-line > span, .page-hero-copy > p');
         gsap.fromTo(revealTargets, { y: 18, opacity: .25 }, {
           y: 0,
           opacity: 1,
@@ -157,13 +159,24 @@ export function App() {
         });
       });
 
-      gsap.utils.toArray<HTMLElement>('.site-section:not(.site-section-home) .eyebrow, .about-founder-details > h2, .about-founder-role, .about-founder-alias, .about-social-links a, .partner-category-heading > *, .broker-network-label, .broker-statement h2, .broker-statement p, .broker-partners-cta').forEach((element) => {
+      gsap.utils.toArray<HTMLElement>('.site-section:not(.site-section-home) .eyebrow, .about-founder-heading .eyebrow, .about-founder-details > h2, .about-founder-role, .about-founder-alias, .about-founder-stats > div, .about-social-links a, .partner-category-heading > *').forEach((element) => {
         gsap.fromTo(element, { y: 18, opacity: 0 }, {
           y: 0,
           opacity: 1,
           duration: .58,
           ease: 'power3.out',
           scrollTrigger: { trigger: element, start: 'top 86%', once: true },
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>('.about-founder-manifesto span').forEach((line, index) => {
+        gsap.fromTo(line, { y: 24, opacity: 0 }, {
+          y: 0,
+          opacity: 1,
+          duration: .75,
+          delay: index * .08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: line, start: 'top 86%', once: true },
         });
       });
 
@@ -219,17 +232,17 @@ export function App() {
         });
       }
 
-      gsap.utils.toArray<HTMLElement>('.community-platform-reveal').forEach((row) => {
-        const direction = row.classList.contains('community-platform-reveal-telegram') ? { x: -30, y: 0 }
-          : row.classList.contains('community-platform-reveal-discord') ? { x: 30, y: 0 }
-            : { x: 0, y: 25 };
-        gsap.fromTo(row, { ...direction, opacity: 0 }, {
+      gsap.utils.toArray<HTMLElement>('.community-platform-reveal').forEach((row, index) => {
+        const direction = index % 2 === 0 ? -16 : 16;
+        gsap.fromTo(row, { x: direction, y: 18, opacity: 0, filter: 'blur(4px)' }, {
           x: 0,
           y: 0,
           opacity: 1,
+          filter: 'blur(0px)',
           duration: .68,
+          delay: index * .08,
           ease: 'power3.out',
-          clearProps: 'transform,opacity',
+          clearProps: 'transform,opacity,filter',
           scrollTrigger: { trigger: row, start: 'top 86%', once: true },
         });
       });
@@ -245,12 +258,29 @@ export function App() {
         });
       });
 
-      gsap.utils.toArray<HTMLElement>('.about-founder-photo-wrap, .preview-image').forEach((image) => {
+      gsap.utils.toArray<HTMLElement>('.preview-image').forEach((image) => {
         gsap.fromTo(image, { clipPath: 'inset(0 0 0 100%)' }, {
           clipPath: 'inset(0 0 0 0)',
           duration: 1.1,
           ease: 'power4.inOut',
           scrollTrigger: { trigger: image, start: 'top 85%', once: true },
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>('.about-founder-photo-wrap').forEach((portrait) => {
+        gsap.fromTo(portrait, { y: 50, opacity: 0, scale: .97 }, {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: .9,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: { trigger: portrait, start: 'top 84%', once: true },
+        });
+        gsap.to(portrait.querySelector('.about-founder-photo'), {
+          y: -14,
+          ease: 'none',
+          scrollTrigger: { trigger: portrait, start: 'top bottom', end: 'bottom top', scrub: .6 },
         });
       });
 

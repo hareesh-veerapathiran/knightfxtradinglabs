@@ -1,11 +1,9 @@
-import { CertificateWall } from '../components/CertificateWall';
 import { Eyebrow, TextLink } from '../components/Elements';
 
 export function HomePage() {
   return <div className="page-content home-page">
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-image" role="img" aria-label="Dark architectural view across Dubai at night" />
-      <CertificateWall />
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-vignette" aria-hidden="true" />
       <div className="hero-content">

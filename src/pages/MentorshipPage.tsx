@@ -1,71 +1,108 @@
 import { useLayoutEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../config';
-import { DisplayLines, Eyebrow, SectionLabel } from '../components/Elements';
+import { DisplayLines, Eyebrow } from '../components/Elements';
 import './mentorship.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function JoinMentorshipLink({ children = 'JOIN MENTORSHIP', className = 'primary-link' }: { children?: ReactNode; className?: string }) {
-  return <a className={className} href={siteConfig.telegramJoinUrl} target="_blank" rel="noopener noreferrer">{children}<ArrowRight size={15}/></a>;
-}
+const mentorshipBenefits = [
+  'Live Interactive Classes',
+  'Market Basics & Price Action',
+  '15-Day Structured Learning',
+  'Doubt Solving',
+  'Prop Firm Suggestions',
+  'Trusted Broker Guidance',
+  'Payout Roadmap',
+  'Risk & Money Management',
+];
 
-function ClickToJoinLink() {
-  return <a className="mentorship-text-join" href={siteConfig.telegramJoinUrl} target="_blank" rel="noopener noreferrer"><span>Want to join KNIGHTFX Mentorship?</span><strong>CLICK HERE TO JOIN <ArrowUpRight size={14}/></strong></a>;
+function JoinMentorshipLink({ children = 'JOIN KNIGHTFX TRADING LABS', className = 'primary-link' }: { children?: ReactNode; className?: string }) {
+  return <a className={className} href={siteConfig.telegramJoinUrl} target="_blank" rel="noopener noreferrer" aria-label="Join KNIGHTFX Trading Labs on Telegram">{children}<ArrowRight size={16} aria-hidden="true" /></a>;
 }
 
 function MentorshipOfferCard() {
   const cardRef = useRef<HTMLElement | null>(null);
-  const setCardRef = (node: HTMLElement | null) => { cardRef.current = node; };
+  const featuresRef = useRef<HTMLUListElement | null>(null);
 
   useLayoutEffect(() => {
     const card = cardRef.current;
-    if (!card || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const list = featuresRef.current;
+    if (!card || !list || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const context = gsap.context(() => {
-      gsap.fromTo(card, { autoAlpha: 0, y: 28 }, {
-        autoAlpha: 1, y: 0, duration: 0.65, ease: 'power3.out',
-        clearProps: 'transform,opacity,visibility',
-        scrollTrigger: { trigger: card, start: 'top 84%', once: true },
-      });
+      const timeline = gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 82%', once: true } });
+      timeline
+        .fromTo(card, { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .68, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }, 0)
+        .fromTo(card.querySelector('.mentorship-price-block'), { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .42, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }, .16)
+        .fromTo(list.children, { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .36, stagger: .03, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }, .14)
+        .fromTo(card.querySelector('.mentorship-offer-cta'), { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }, .49);
     }, card);
 
     return () => context.revert();
   }, []);
 
-  return <article ref={setCardRef} className="mentorship-offer-card" aria-labelledby="mentorship-price-title">
+  return <article ref={cardRef} className="mentorship-offer-card" aria-labelledby="mentorship-offer-title">
     <span className="mentorship-popular-badge">MOST POPULAR</span>
-    <header className="mentorship-offer-header">
-      <h2 id="mentorship-price-title">KNIGHTFX MENTORSHIP</h2>
-      <p>A personal trading mentorship built around live guidance, direct founder access and a structured approach to becoming a more disciplined trader.</p>
-    </header>
-    <div className="mentorship-offer-pricing">
-      <del aria-label="Original price 349 dollars">$349</del>
-      <span className="mentorship-limited-offer">LIMITED OFFER</span>
-      <strong aria-label="149 dollars">$149</strong>
-      <span className="mentorship-fee-label">ONE-TIME MENTORSHIP FEE</span>
+    <div className="mentorship-offer-main">
+      <header className="mentorship-offer-header">
+        <span className="mentorship-card-kicker">PRIVATE TRADING EDUCATION</span>
+        <h2 id="mentorship-offer-title">KNIGHTFX MENTORSHIP</h2>
+        <p>A structured 15-Day Live Mentorship built around live guidance, market understanding, disciplined execution and direct founder access.</p>
+      </header>
+      <ul className="mentorship-offer-features" ref={featuresRef}>
+        {mentorshipBenefits.map((benefit, index) => <li key={benefit}>
+          <span className="mentorship-feature-number">{String(index + 1).padStart(2, '0')}</span>
+          <span className="mentorship-feature-check" aria-hidden="true">✓</span>
+          <span>{benefit}</span>
+          <span className="mentorship-feature-arrow" aria-hidden="true">↗</span>
+        </li>)}
+        <li className="mentorship-inner-circle-benefit">
+          <span className="mentorship-feature-number">09</span>
+          <span className="mentorship-feature-check" aria-hidden="true">✓</span>
+          <strong>FREE 3-MONTH INNER CIRCLE ACCESS</strong>
+          <span className="mentorship-feature-arrow" aria-hidden="true">↗</span>
+        </li>
+      </ul>
     </div>
-    <div className="mentorship-offer-divider" />
-    <ul className="mentorship-offer-features">
-      <li><span aria-hidden="true">✓</span>Live Mentoring</li>
-      <li><span aria-hidden="true">✓</span>1:1 with Founder — Hareesh VN</li>
-      <li><span aria-hidden="true">✓</span>Prop Firm Suggestions According to Trading Style</li>
-      <li><span aria-hidden="true">✓</span>KNIGHTFX Inner Circle Included</li>
-    </ul>
-    <JoinMentorshipLink className="mentorship-offer-cta">JOIN MENTORSHIP</JoinMentorshipLink>
+
+    <aside className="mentorship-offer-side" aria-label="Mentorship price and enrollment">
+      <div className="mentorship-price-block">
+        <span className="mentorship-limited-offer">LIMITED OFFER</span>
+        <del aria-label="Original price 349 dollars">$349</del>
+        <strong aria-label="149 dollars">$149</strong>
+        <span className="mentorship-fee-label">ONE-TIME MENTORSHIP FEE</span>
+      </div>
+      <p className="mentorship-learning-motto">Learn <i>•</i> Practice <i>•</i> Improve</p>
+      <JoinMentorshipLink className="mentorship-offer-cta" children="JOIN MENTORSHIP" />
+    </aside>
   </article>;
 }
 
 export function MentorshipPage() {
   return <div className="page-content inner-page mentorship-page">
-    <section className="page-hero mentorship-hero"><div className="page-hero-image mentorship-image"/><div className="page-hero-shade"/><div className="page-hero-copy"><Eyebrow>KNIGHTFX MENTORSHIP</Eyebrow><DisplayLines as="h1" className="page-title" lines={['TRADE WITH A PLAN.', <em>NOT WITH EMOTION.</em>]} /><p>Market education with structure, context and an emphasis on disciplined practice.</p><div className="mentorship-hero-actions"><JoinMentorshipLink/><a className="mentorship-explore-link" href="#mentorship-program">EXPLORE THE PROGRAM <ArrowDown size={14}/></a></div></div><span className="page-hero-index">03 / 05</span></section>
-    <section id="mentorship-program" className="mentorship-intro section-pad"><SectionLabel number="01" side="LEARN · ANALYSE · PRACTISE">A LEARNING PROCESS</SectionLabel><div className="mentorship-intro-grid"><DisplayLines className="section-title" lines={['UNDERSTAND FIRST.', <em>THEN TAKE ACTION.</em>]} /><p data-reveal>Mentorship is built around learning the market, forming a process and reviewing decisions. The work is educational; trading outcomes remain individual and uncertain.</p></div></section>
-    <section className="mentorship-pricing section-pad" aria-label="KNIGHTFX Mentorship pricing">
+    <section className="mentorship-intro section-pad" aria-labelledby="mentorship-page-title">
+      <div className="mentorship-intro-copy">
+        <Eyebrow>KNIGHTFX TRADING LABS / MENTORSHIP</Eyebrow>
+        <DisplayLines as="h1" id="mentorship-page-title" className="mentorship-page-title" lines={['MASTER THE MARKETS.', <em>TRADE WITH A PLAN.</em>]} />
+        <p data-reveal>A structured 15-Day Live Mentorship designed to help traders understand the market, build a process and improve their decision-making with direct guidance.</p>
+      </div>
+      <span className="mentorship-intro-index" aria-hidden="true">KNIGHTFX / 15 DAYS</span>
+    </section>
+
+    <section className="mentorship-pricing section-pad" aria-label="KNIGHTFX Mentorship offer">
       <MentorshipOfferCard />
     </section>
-    <section className="mentorship-closing section-pad"><Eyebrow>READY TO START?</Eyebrow><DisplayLines className="section-title" lines={['BUILD YOUR PROCESS.', <em>TRADE WITH PURPOSE.</em>]} /><p data-reveal>Get direct guidance, live mentoring, personalized support and Inner Circle access through KNIGHTFX Mentorship.</p><div className="mentorship-closing-actions"><JoinMentorshipLink/><ClickToJoinLink/></div></section>
+
+    <section className="mentorship-closing section-pad" aria-labelledby="mentorship-closing-title">
+      <Eyebrow>KNIGHTFX MENTORSHIP</Eyebrow>
+      <DisplayLines as="h2" id="mentorship-closing-title" className="mentorship-closing-title" lines={['READY TO START?', <em>BUILD YOUR PROCESS.</em>, 'TRADE WITH PURPOSE.']} />
+      <p data-reveal>Start your 15-Day Live Mentorship with KNIGHTFX TRADING LABS.</p>
+      <JoinMentorshipLink className="mentorship-final-cta" />
+      <a className="mentorship-final-text-link" href={siteConfig.telegramJoinUrl} target="_blank" rel="noopener noreferrer">MESSAGE @KNIGHTFX16 <ArrowUpRight size={14} aria-hidden="true" /></a>
+    </section>
   </div>;
 }

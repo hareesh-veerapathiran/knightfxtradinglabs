@@ -2,7 +2,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { DisplayLines, Eyebrow, SectionLabel } from '../components/Elements';
 import { CommunityImageMarquee } from '../components/CommunityImageMarquee';
 import { SiteLink } from '../components/SiteChrome';
-import { siteConfig } from '../config';
+import { communityLinks, siteConfig } from '../config';
 import { novemberJournalImages, octoberJournalImages, payoutImages, phaseClearanceImages } from '../data/communityArchive';
 import './community.css';
 
@@ -12,53 +12,42 @@ type CommunityPlatform = {
   label: string;
   copy: string;
   action: string;
+  logo: string;
   url: string;
 };
 
-function PlatformMark({ platform }: { platform: CommunityPlatform['id'] }) {
-  if (platform === 'telegram') {
-    return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.4 3.4 19.3 20c-.2 1.2-.9 1.5-1.9.9l-5.2-3.8-2.5 2.4c-.3.3-.5.5-1 .5l.4-5.5 10-9.1c.4-.4-.1-.6-.7-.2L6 13 0.8 11.4c-1.1-.3-1.1-1.1.2-1.6L20.4 2c.9-.3 1.7.2 2 1.4Z" /></svg>;
-  }
-
-  if (platform === 'discord') {
-    return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.3a18 18 0 0 1 10 0c2.2 2.7 3.5 5.9 3.8 9.6a16 16 0 0 1-5 3.1l-1.1-1.8a10 10 0 0 0 1.7-.8 11 11 0 0 1-8.8 0c.6.3 1.1.6 1.7.8l-1.1 1.8a16 16 0 0 1-5-3.1C3.5 11.2 4.8 8 7 5.3Z"/><circle cx="9" cy="11" r="1.15" fill="#0b0c0d"/><circle cx="15" cy="11" r="1.15" fill="#0b0c0d"/></svg>;
-  }
-
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.1 9.1 0 0 0-7.8 13.8L3 21l4.6-1.2A9.2 9.2 0 1 0 12 2.8Zm0 16.5a7.2 7.2 0 0 1-3.7-1l-.4-.2-2.7.7.7-2.6-.3-.5A7.3 7.3 0 1 1 12 19.3Z"/><path d="M9 7.8c-.3-.6-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.2.2 2.1 3.4 5.2 4.6 2.6 1 3.1.8 3.6.7.6-.1 1.8-.8 2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.7-.5l-2.1-1c-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6L9 7.8Z"/></svg>;
-}
-
 function CommunityPlatformRow({ platform, index }: { platform: CommunityPlatform; index: number }) {
   const content = <>
-    <span className="community-platform-top"><span>0{index + 1} / {platform.name.toUpperCase()}</span><span>{platform.url ? platform.action : 'INVITE URL NOT CONFIGURED'} <ArrowUpRight size={14} aria-hidden="true" /></span></span>
+    <span className="community-platform-top"><span>0{index + 1} / {platform.name.toUpperCase()}</span><span>{platform.action} <ArrowUpRight size={14} aria-hidden="true" /></span></span>
     <span className="community-platform-main">
-      <span className={`community-platform-mark community-platform-mark-${platform.id}`}><PlatformMark platform={platform.id} /></span>
+      <span className={`community-platform-mark community-platform-mark-${platform.id}`}><img src={platform.logo} alt="" loading="lazy" decoding="async" /></span>
       <span className="community-platform-copy"><small>{platform.label}</small><span>{platform.copy}</span></span>
     </span>
   </>;
 
   return <div className={`community-platform-reveal community-platform-reveal-${platform.id}`}>
-    {platform.url
-      ? <a className={`community-platform-row community-platform-row-${platform.id}`} href={platform.url} target="_blank" rel="noopener noreferrer" aria-label={`${platform.action} (opens in a new tab)`}>{content}</a>
-      : <div className={`community-platform-row community-platform-row-${platform.id} community-platform-unconfigured`} data-url-status="missing" role="group" aria-label={`${platform.name}, ${platform.label}. Invite URL not configured.`}>{content}</div>}
+    <a className={`community-platform-row community-platform-row-${platform.id}`} href={platform.url} target="_blank" rel="noopener noreferrer" aria-label={`${platform.action} (opens in a new tab)`}>{content}</a>
   </div>;
 }
 
-const platforms: CommunityPlatform[] = [
+const communityPlatforms: CommunityPlatform[] = [
   {
     id: 'telegram',
     name: 'Telegram',
     label: 'PUBLIC CHANNEL',
     copy: 'Follow KNIGHTFX for trading updates, market content, announcements and community information.',
     action: 'JOIN TELEGRAM',
-    url: siteConfig.telegramJoinUrl,
+    logo: 'https://cdn.simpleicons.org/telegram',
+    url: communityLinks.telegram,
   },
   {
     id: 'discord',
     name: 'Discord',
     label: 'COMMUNITY SERVER',
-    copy: 'Join the KNIGHTFX Discord community and connect with traders in a more structured community environment.',
+    copy: 'Join the KNIGHTFX Discord community and connect with traders in a structured community environment.',
     action: 'JOIN DISCORD',
-    url: siteConfig.discordCommunityUrl,
+    logo: 'https://cdn.simpleicons.org/discord',
+    url: communityLinks.discord,
   },
   {
     id: 'whatsapp',
@@ -66,7 +55,8 @@ const platforms: CommunityPlatform[] = [
     label: 'COMMUNITY GROUP',
     copy: 'Stay connected with the KNIGHTFX community through WhatsApp.',
     action: 'JOIN WHATSAPP',
-    url: siteConfig.whatsappCommunityUrl,
+    logo: 'https://cdn.simpleicons.org/whatsapp',
+    url: communityLinks.whatsapp,
   },
 ];
 
@@ -93,7 +83,7 @@ export function CommunityPage() {
         <p>Connect with the KNIGHTFX community across the platforms where traders stay informed, discuss the markets and interact with the community.</p>
       </div>
       <div className="community-platform-list">
-        {platforms.map((platform, index) => <CommunityPlatformRow key={platform.id} platform={platform} index={index} />)}
+        {communityPlatforms.map((platform, index) => <CommunityPlatformRow key={platform.id} platform={platform} index={index} />)}
       </div>
     </section>
 
