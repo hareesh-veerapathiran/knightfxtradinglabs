@@ -66,8 +66,15 @@ export function PartnershipsPage() {
       <section className="partner-category" aria-labelledby="prop-firms-heading">
         <div className="partner-category-heading"><span>01 / PROP FIRM PARTNERS</span><h3 id="prop-firms-heading">TRADE WITH<br />OUR PARTNERS.</h3></div>
         <p className="partner-category-description">Explore selected proprietary trading partners available through the KNIGHTFX community.</p>
-        <div className="partner-card-grid partner-card-grid-prop" aria-label="Prop firm partners">
-          {propFirms.map((partner) => <PartnerCard key={partner.name} partner={partner} />)}
+        <div className="partner-prop-marquee" aria-label="Prop firm partners">
+          <div className="partner-prop-track">
+            <div className="partner-prop-set">
+              {propFirms.map((partner) => <PartnerCard key={partner.name} partner={partner} />)}
+            </div>
+            <div className="partner-prop-set partner-prop-set-duplicate" aria-hidden="true">
+              {propFirms.map((partner) => <PartnerCard key={`duplicate-${partner.name}`} partner={partner} decorative />)}
+            </div>
+          </div>
         </div>
         <div className="partner-code-note"><span>CODE: KNIGHTFX</span><p>Use KNIGHTFX to access the maximum available offer from participating partners.</p></div>
       </section>

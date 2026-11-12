@@ -4,13 +4,15 @@ import type { Partner } from '../data/partners';
 
 type PartnerCardProps = {
   partner: Partner;
+  decorative?: boolean;
 };
 
-export function PartnerCard({ partner }: PartnerCardProps) {
+export function PartnerCard({ partner, decorative = false }: PartnerCardProps) {
   const [cardElement, setCardElement] = useState<HTMLElement | null>(null);
   const [revealed, setRevealed] = useState(false);
   const hasUrl = Boolean(partner.url);
   const isPropFirm = partner.category === 'PROP FIRM';
+  const partnerTypeClass = isPropFirm ? 'partner-card-prop' : '';
   const isWholeCardLink = partner.name === 'XM Global' && hasUrl;
   const revealDirection = partner.category === 'BROKER' ? 'from-right' : 'from-left';
   const offer = partner.offer || (isPropFirm ? 'KNIGHTFX COMMUNITY OFFER' : 'KNIGHTFX COMMUNITY PARTNER');
@@ -32,7 +34,7 @@ export function PartnerCard({ partner }: PartnerCardProps) {
     return () => observer.disconnect();
   }, [cardElement]);
 
-  const art = <div className="partner-card-art" style={{ backgroundColor: partner.logoBackground }}>
+  const art = <div className="partner-card-art" style={{ background: partner.logoBackground }}>
     <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
   </div>;
 
@@ -41,11 +43,14 @@ export function PartnerCard({ partner }: PartnerCardProps) {
       <span>{partner.category}</span>
       <h4>{partner.name}</h4>
     </div>
-    {hasUrl && !isWholeCardLink ? <a className="partner-card-art-link" href={partner.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${partner.name} (opens in a new tab)`}>{art}</a> : art}
+    {hasUrl && !isWholeCardLink && !decorative ? <a className="partner-card-art-link" href={partner.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${partner.name} (opens in a new tab)`}>{art}</a> : decorative ? <div className="partner-card-art-link">{art}</div> : art}
     <p className="partner-card-offer">{offer}</p>
     {isPropFirm && partner.code && <div className="partner-card-code"><span>CODE</span><strong>{partner.code}</strong></div>}
     <div className="partner-card-actions">
-      {isWholeCardLink ? <>
+      {decorative ? <>
+        <span className="partner-card-action partner-card-action-primary">VIEW OFFER <ArrowUpRight size={14} aria-hidden="true" /></span>
+        <span className="partner-card-action partner-card-action-secondary">VISIT PARTNER <ArrowUpRight size={14} aria-hidden="true" /></span>
+      </> : isWholeCardLink ? <>
         <span className="partner-card-action partner-card-action-primary">VIEW OFFER <ArrowUpRight size={14} aria-hidden="true" /></span>
         <span className="partner-card-action partner-card-action-secondary">VISIT PARTNER <ArrowUpRight size={14} aria-hidden="true" /></span>
       </> : hasUrl ? <>
@@ -58,7 +63,9 @@ export function PartnerCard({ partner }: PartnerCardProps) {
     </div>
   </>;
 
+  if (decorative) return <article className={`partner-card partner-card-prop partner-prop-marquee-card`} aria-hidden="true">{content}</article>;
+
   return isWholeCardLink
     ? <a ref={setCardElement} className={`partner-card partner-card-whole-link ${revealDirection} ${revealed ? 'is-revealed' : ''}`} href={partner.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit XM Global partner (opens in a new tab)`}>{content}</a>
-    : <article ref={setCardElement} className={`partner-card ${revealDirection} ${revealed ? 'is-revealed' : ''}`}>{content}</article>;
+    : <article ref={setCardElement} className={`partner-card ${partnerTypeClass} ${revealDirection} ${revealed ? 'is-revealed' : ''}`}>{content}</article>;
 }
