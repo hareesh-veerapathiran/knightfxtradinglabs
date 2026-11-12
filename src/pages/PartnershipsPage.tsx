@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ArrowDown, ArrowRight, Check, Copy } from 'lucide-react';
-import { PartnerLogo } from '../components/PartnerLogo';
-import { PartnerLogoMarquee } from '../components/PartnerLogoMarquee';
+import { PartnerCard } from '../components/PartnerCard';
 import { Eyebrow, SectionLabel } from '../components/Elements';
 import { partners } from '../data/partners';
 import './partnerships.css';
@@ -44,7 +43,7 @@ export function PartnershipsPage() {
       <div className="partnerships-opening-copy">
         <Eyebrow>KNIGHTFX TRADING LABS / PARTNERSHIPS</Eyebrow>
         <h1 className="partnerships-main-title"><span>ONE CODE.</span><span>MAXIMUM <em>SAVINGS.</em></span></h1>
-        <p>Our partner network connects the KNIGHTFX community with selected trading firms, brokers and education platforms.</p>
+        <p>Selected trading firms, brokers and education partners for the KNIGHTFX community.</p>
         <a className="partnerships-opening-link" href="#partner-network">EXPLORE PARTNERS <ArrowDown size={14} aria-hidden="true" /></a>
       </div>
       <div className="partnerships-code-intro" data-reveal>
@@ -58,42 +57,40 @@ export function PartnershipsPage() {
     </section>
 
     <section id="partner-network" className="partner-network section-pad">
-      <SectionLabel number="01" side="SELECTED COLLABORATIONS">OUR PARTNER NETWORK</SectionLabel>
+      <SectionLabel number="01" side="SELECTED COLLABORATIONS">FEATURED PARTNERS</SectionLabel>
       <div className="partner-network-intro" data-reveal>
         <h2 className="display-lines"><span className="display-line"><span>BUILT AROUND</span></span><span className="display-line"><span>THE RIGHT <em>PARTNERS.</em></span></span></h2>
         <p>Selected partnerships across proprietary trading, brokerage and trading education.</p>
       </div>
 
       <section className="partner-category" aria-labelledby="prop-firms-heading">
-        <div className="partner-category-heading"><span>02 / PROP FIRM PARTNERS</span><h3 id="prop-firms-heading">TRADE WITH OUR PARTNERS.</h3></div>
-        <PartnerLogoMarquee partners={propFirms} label="Prop firm partner logos" />
+        <div className="partner-category-heading"><span>01 / PROP FIRM PARTNERS</span><h3 id="prop-firms-heading">TRADE WITH<br />OUR PARTNERS.</h3></div>
+        <p className="partner-category-description">Explore selected proprietary trading partners available through the KNIGHTFX community.</p>
+        <div className="partner-card-grid partner-card-grid-prop" aria-label="Prop firm partners">
+          {propFirms.map((partner) => <PartnerCard key={partner.name} partner={partner} />)}
+        </div>
         <div className="partner-code-note"><span>CODE: KNIGHTFX</span><p>Use KNIGHTFX to access the maximum available offer from participating partners.</p></div>
       </section>
 
       <section className="partner-category partner-category-brokers" aria-labelledby="brokers-heading">
-        <div className="partner-category-heading"><span>03 / BROKER PARTNERS</span><h3 id="brokers-heading">ACCESS THE MARKETS.</h3></div>
-        <div className="broker-statement">
-          <span className="broker-network-label">BROKER NETWORK</span>
-          <h2>ACCESS THE MARKETS.<br /><em>TRADE WITH CONFIDENCE.</em></h2>
-          <p>Selected brokerage partners connected to the KNIGHTFX community.</p>
+        <div className="partner-category-heading"><span>02 / BROKER PARTNERS</span><h3 id="brokers-heading">ACCESS<br />THE MARKETS.</h3></div>
+        <p className="partner-category-description">Selected brokerage partners for the KNIGHTFX community.</p>
+        <div id="broker-partner-panels" className="partner-card-grid partner-card-grid-brokers" aria-label="Broker partners">
+          {brokers.map((partner) => <PartnerCard key={partner.name} partner={partner} />)}
         </div>
-        <div id="broker-partner-panels" className="broker-partner-list" aria-label="Broker partners">
-          {brokers.map((partner) => <PartnerLogo key={partner.name} partner={partner} square />)}
-        </div>
-        <a className="broker-partners-cta" href="#broker-partner-panels">EXPLORE OUR BROKER PARTNERS <ArrowRight size={15} aria-hidden="true" /></a>
       </section>
 
       {educationPartner && <section className="partner-category partner-category-education" aria-labelledby="education-partner-heading">
-        <div className="partner-category-heading"><span>04 / EDUCATION PARTNERSHIP</span><h3 id="education-partner-heading">LEARN. DEVELOP. EVOLVE.</h3></div>
+        <div className="partner-category-heading"><span>03 / EDUCATION PARTNERSHIP</span><h3 id="education-partner-heading">LEARN.<br />DEVELOP.<br />EVOLVE.</h3></div>
         <div className="education-partner-layout">
-          <PartnerLogo partner={educationPartner} />
+          <PartnerCard partner={educationPartner} />
           <div className="education-partner-caption" data-reveal><span>KNIGHTFX TRADING LABS × INFINITY VISION</span><p>EDUCATION PARTNERSHIP</p></div>
         </div>
       </section>}
     </section>
 
     <section className="partnership-code section-pad" aria-labelledby="partnership-code-heading">
-      <div className="partnership-code-left" data-reveal><span className="partnerships-code-label">05 / COMMUNITY CODE</span><h2 id="partnership-code-heading">ONE CODE.</h2></div>
+      <div className="partnership-code-left" data-reveal><span className="partnerships-code-label">04 / COMMUNITY CODE</span><h2 id="partnership-code-heading">ONE CODE.</h2></div>
       <div className="partnership-code-right" data-reveal>
         <p className="partnership-code-word">KNIGHTFX</p><p className="partnership-code-offer">MAXIMUM AVAILABLE OFFER.</p>
         <p className="partnership-code-description">Use the KNIGHTFX community code across participating partners.</p>
@@ -104,7 +101,7 @@ export function PartnershipsPage() {
     </section>
 
     <section className="partnerships-statement section-pad" data-reveal>
-      <span className="partnerships-code-label">06 / SHARED WITH PURPOSE</span>
+      <span className="partnerships-code-label">05 / SHARED WITH PURPOSE</span>
       <h2>PARTNERSHIPS BUILT<br /><em>FOR THE COMMUNITY.</em></h2>
       <p>From proprietary trading firms and brokers to education partners, KNIGHTFX TRADING LABS works with selected brands to create meaningful opportunities for our community.</p>
     </section>
